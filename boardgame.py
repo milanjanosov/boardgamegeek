@@ -92,7 +92,7 @@ def download_data(thread):
                 i += 1
                 time.sleep(1)
             except:
-                time.sleep(1000)
+                time.sleep(120)
                 pass
 
 
