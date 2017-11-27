@@ -80,18 +80,20 @@ def download_data(thread):
 
     with open('board_game_api_data_' + str(thread) + '.csv', 'wb') as fou:
 
-        for title in titles[0:10]:
-            
-            g = bgg.game(title)
-             
-            dw = csv.DictWriter(fou, delimiter=',', fieldnames=get_game_data(g))
-            if i == 1:  dw.writeheader()
-            dw.writerow(get_game_data(g))
+        for title in titles:
+            try:
+                g = bgg.game(title)
+                 
+                dw = csv.DictWriter(fou, delimiter=',', fieldnames=get_game_data(g))
+                if i == 1:  dw.writeheader()
+                dw.writerow(get_game_data(g))
 
-            print title, '\t', i, '/', n, '\t', thread+1, '/5'
-            i += 1
-            time.sleep(1)
-    
+                print title, '\t', i, '/', n, '\t', thread+1, '/5'
+                i += 1
+                time.sleep(1)
+            except:
+                time.sleep(1000)
+                pass
 
 
 if __name__ == '__main__': 
